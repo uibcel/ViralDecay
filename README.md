@@ -1,15 +1,27 @@
 ### Viral decay simulations
 
-To simulate decay, run:
+Requires numpy, scipy, matplotlib, lmfit
+
+To simulate decay using default settings:
 
 ```
-code.py
+python DecaySimulation.py
 ```
+
+For available options run:
+
+```
+python DecaySimulation.py -h
+```
+
 
 ### Model parametrization
 
-To simulate decay, run:
+To parameterize the model from observed data (e.g. Spring21_V1_time_MPN_VLP.txt) run
 
 ```
-code2.py
+DecayModelfitting.py -obs Spring21_V1_time_MPN_VLP
 ```
+
+
+

@@ -4,8 +4,7 @@ import matplotlib.pyplot as plt
 from lmfit import minimize, Parameters
 import sys
 
-######## plot settings
-plt.rcParams.update({'font.size': 15})
+
 
 ######## Functions
 # function that returns dU/dt, 
@@ -44,11 +43,26 @@ def ODEmodel(params,t):
 		y_return=y
 	
 	return y_return
-    
+
+def help():
+	print("-A initial number of particles in stat A, default 1E+5")
+	print("-B initial number of particles in stat B, default 1E+7")	
+	print("-id runid, default '' ")
+	print("-s save plot")
+	print("-l show legend in plot")
+	print("-kab rate constant: State A->B, default 0.15")
+	print("-kbc rate constant: State B->C, default 0.05")
+	print("-kac rate constant: State A->C, default 0.05")
 
 
+print (sys.argv)
+"-h" in sys.argv
 
 ####### input
+if "-h" in sys.argv:
+	help()
+	exit()
+
 if "-A" in sys.argv:			# initial number in state A
 	pos=sys.argv.index("-A")
 	A0=float(sys.argv[pos+1])
@@ -130,6 +144,9 @@ params.add('A0',value=np.log(A0))
 params.add('B0',value=np.log(B0))
 params.add('t_0', value=0, vary=False)
 
+
+######## plot settings
+plt.rcParams.update({'font.size': 15})
 
 ########### Run similation with parameters
 time=np.linspace(params['t_0'],20,200)
